@@ -51,7 +51,7 @@ func newTinySlc() []Tiny {
 
 func newTinyPtrsSlc() []*Tiny {
 	size := 5
-	res := make([]*Tiny, size)
+	var res []*Tiny
 
 	for i := 0; i < size; i++ {
 		var tiny = &Tiny{
@@ -94,7 +94,7 @@ func newMediumSlc() []Medium {
 
 func newMediumPtrsSlc() []*Medium {
 	size := 10
-	res := make([]*Medium, size)
+	var res []*Medium
 
 	for i := 0; i < size; i++ {
 		ln := "bar"
@@ -159,7 +159,7 @@ func newHugeSlc() []Huge {
 
 func newHugePtrsSlc() []*Huge {
 	size := 50
-	res := make([]*Huge, size)
+	var res []*Huge
 
 	for i := 0; i < size; i++ {
 		ua := "Ukraine"
