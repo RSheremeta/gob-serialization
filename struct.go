@@ -39,8 +39,10 @@ func newTiny() Tiny {
 }
 
 func newTinySlc() []Tiny {
-	var res []Tiny
-	for i := 0; i < 5; i++ {
+	size := 5
+	res := make([]Tiny, size)
+
+	for i := 0; i < size; i++ {
 		res = append(res, newTiny())
 	}
 
@@ -48,9 +50,10 @@ func newTinySlc() []Tiny {
 }
 
 func newTinyPtrsSlc() []*Tiny {
-	var res []*Tiny
+	size := 5
+	res := make([]*Tiny, size)
 
-	for i := 0; i < 5; i++ {
+	for i := 0; i < size; i++ {
 		var tiny = &Tiny{
 			TinyID:  1,
 			SomeStr: "foo bar",
@@ -79,8 +82,10 @@ func newMedium() Medium {
 }
 
 func newMediumSlc() []Medium {
-	var res []Medium
-	for i := 0; i < 5; i++ {
+	size := 10
+	res := make([]Medium, size)
+
+	for i := 0; i < size; i++ {
 		res = append(res, newMedium())
 	}
 
@@ -88,9 +93,10 @@ func newMediumSlc() []Medium {
 }
 
 func newMediumPtrsSlc() []*Medium {
-	var res []*Medium
+	size := 10
+	res := make([]*Medium, size)
 
-	for i := 0; i < 5; i++ {
+	for i := 0; i < size; i++ {
 		ln := "bar"
 		mmb := 10.24
 
@@ -141,8 +147,10 @@ func newHuge() Huge {
 }
 
 func newHugeSlc() []Huge {
-	var res []Huge
-	for i := 0; i < 5; i++ {
+	size := 50
+	res := make([]Huge, size)
+
+	for i := 0; i < size; i++ {
 		res = append(res, newHuge())
 	}
 
@@ -150,9 +158,10 @@ func newHugeSlc() []Huge {
 }
 
 func newHugePtrsSlc() []*Huge {
-	var res []*Huge
+	size := 50
+	res := make([]*Huge, size)
 
-	for i := 0; i < 5; i++ {
+	for i := 0; i < size; i++ {
 		ua := "Ukraine"
 		uab := []byte(ua)
 		t := time.Now()

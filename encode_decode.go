@@ -26,7 +26,7 @@ func decodeGob(b []byte, res any) {
 	buf := bytes.NewBuffer(b)
 	dcdr := gob.NewDecoder(buf)
 
-	if err := dcdr.Decode(buf); err != nil {
+	if err := dcdr.Decode(res); err != nil {
 		panic(err)
 	}
 }
