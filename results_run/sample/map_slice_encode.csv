@@ -1,0 +1,7 @@
+goos: darwin
+goarch: arm64
+pkg: github.com/RSheremeta/gob-serialization
+BenchmarkEncodeSliceComplexMap/type=GOB_struct_size=huge_complex_map-10         	      10	 748115567 ns/op	1046502468 B/op	 6901129 allocs/op
+BenchmarkEncodeSliceComplexMap/type=JSON_struct_size=huge_complex_map-10        	      10	2620604896 ns/op	1010330522 B/op	 6111405 allocs/op
+PASS
+ok  	github.com/RSheremeta/gob-serialization	38.338s

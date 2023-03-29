@@ -5,7 +5,9 @@
 This repo is made just out of curiosity and has an experimental reasoning.
 
 ### Description
-There are 4 structs: `Tiny`, `Medium`, `Big`, `Huge`. 
+There are 4 structs: `Tiny`, `Medium`, `Big`, `Huge` which are being compared against all the defined formats above. 
+And there is a *separate* struct to compare **Gob vs JSON only** - a struct called `ComplexAndHuge` which holds a slice of `type complexMap map[string]Huge`.
+
 Each of them has a respective size and complexity.
 And each of them builds the following targets to run encoding & decoding benchmarks against: 
 - `Single` means a single struct - eg - `Tiny{}`
@@ -13,7 +15,7 @@ And each of them builds the following targets to run encoding & decoding benchma
 - `Pointer Slice` means a slice of pointers to given struct - eg - `[]*Tiny`
 
 ### Usage
-You can just look at and analyze the results I got while running on my machine by observing csv samples in **results_run/** dir.
+You can just look at and analyze the results I got while running on my machine by observing csv samples in **results_run/sample/** dir.
 
 Also, feel free to play on your own by doing the following:
 
@@ -28,8 +30,19 @@ The experiment is run on:
 - Apple M1 Pro CPU
 - Go 1.19.5
 
+[**map_ptr_slice_decode.csv:**](https://github.com/RSheremeta/gob-serialization/blob/master/results_run/sample/map_ptr_slice_decode.csv)
 
-**`all.csv:`**
+```bash
+goos: darwin
+goarch: arm64
+pkg: github.com/RSheremeta/gob-serialization
+BenchmarkDecodePtrSliceComplexMap/type=GOB_struct_size=huge_complex_map-10         	      10	 646447171 ns/op	630836108 B/op	11072058 allocs/op
+BenchmarkDecodePtrSliceComplexMap/type=JSON_struct_size=huge_complex_map-10        	      10	6356559012 ns/op	1610172119 B/op	18605410 allocs/op
+PASS
+ok  	github.com/RSheremeta/gob-serialization	85.338s
+```
+
+[**all.csv:**](https://github.com/RSheremeta/gob-serialization/blob/master/results_run/sample/all.csv)
 
 ```bash
 goos: darwin
