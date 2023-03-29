@@ -1,0 +1,21 @@
+goos: darwin
+goarch: arm64
+pkg: github.com/RSheremeta/gob-serialization
+BenchmarkEncodeSingle/type=GOB_struct_size=tiny-10         	      10	      3421 ns/op	    1136 B/op	      20 allocs/op
+BenchmarkEncodeSingle/type=JSON_struct_size=tiny-10        	      10	      1304 ns/op	     176 B/op	       1 allocs/op
+BenchmarkEncodeSingle/type=XML_struct_size=tiny-10         	      10	      4308 ns/op	    4561 B/op	       9 allocs/op
+BenchmarkEncodeSingle/type=YAML_struct_size=tiny-10        	      10	      6817 ns/op	    6776 B/op	      23 allocs/op
+BenchmarkEncodeSingle/type=GOB_struct_size=medium-10       	      10	      5912 ns/op	    1720 B/op	      38 allocs/op
+BenchmarkEncodeSingle/type=JSON_struct_size=medium-10      	      10	      1871 ns/op	     498 B/op	       2 allocs/op
+BenchmarkEncodeSingle/type=XML_struct_size=medium-10       	      10	      5583 ns/op	    5056 B/op	      14 allocs/op
+BenchmarkEncodeSingle/type=YAML_struct_size=medium-10      	      10	     11242 ns/op	   17112 B/op	      56 allocs/op
+BenchmarkEncodeSingle/type=GOB_struct_size=big-10          	      10	      8283 ns/op	    3073 B/op	      65 allocs/op
+BenchmarkEncodeSingle/type=JSON_struct_size=big-10         	      10	      3221 ns/op	    1202 B/op	       6 allocs/op
+BenchmarkEncodeSingle/type=XML_struct_size=big-10          	      10	     12992 ns/op	    6036 B/op	      21 allocs/op
+BenchmarkEncodeSingle/type=YAML_struct_size=big-10         	      10	     33654 ns/op	   80288 B/op	     176 allocs/op
+BenchmarkEncodeSingle/type=GOB_struct_size=huge-10         	      10	   1692592 ns/op	 1752084 B/op	   13891 allocs/op
+BenchmarkEncodeSingle/type=JSON_struct_size=huge-10        	      10	   5292438 ns/op	 2449044 B/op	   12226 allocs/op
+BenchmarkEncodeSingle/type=XML_struct_size=huge-10         	      10	  24846138 ns/op	 5156133 B/op	   29982 allocs/op
+BenchmarkEncodeSingle/type=YAML_struct_size=huge-10        	      10	 100121717 ns/op	272096372 B/op	  373306 allocs/op
+PASS
+ok  	github.com/RSheremeta/gob-serialization	1.663s

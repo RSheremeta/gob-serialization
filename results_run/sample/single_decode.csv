@@ -1,0 +1,21 @@
+goos: darwin
+goarch: arm64
+pkg: github.com/RSheremeta/gob-serialization
+BenchmarkDecodeSingle/type=GOB_struct_size=tiny-10         	      10	     12662 ns/op	    6760 B/op	     179 allocs/op
+BenchmarkDecodeSingle/type=JSON_struct_size=tiny-10        	      10	      1354 ns/op	     248 B/op	       6 allocs/op
+BenchmarkDecodeSingle/type=XML_struct_size=tiny-10         	      10	      3317 ns/op	    1481 B/op	      33 allocs/op
+BenchmarkDecodeSingle/type=YAML_struct_size=tiny-10        	      10	      6912 ns/op	    7280 B/op	      52 allocs/op
+BenchmarkDecodeSingle/type=GOB_struct_size=medium-10       	      10	     21038 ns/op	    8603 B/op	     235 allocs/op
+BenchmarkDecodeSingle/type=JSON_struct_size=medium-10      	      10	      5550 ns/op	     457 B/op	      14 allocs/op
+BenchmarkDecodeSingle/type=XML_struct_size=medium-10       	      10	     12917 ns/op	    3609 B/op	      92 allocs/op
+BenchmarkDecodeSingle/type=YAML_struct_size=medium-10      	      10	     17762 ns/op	   10850 B/op	     126 allocs/op
+BenchmarkDecodeSingle/type=GOB_struct_size=big-10          	      10	     26250 ns/op	   11545 B/op	     324 allocs/op
+BenchmarkDecodeSingle/type=JSON_struct_size=big-10         	      10	     10129 ns/op	    1081 B/op	      32 allocs/op
+BenchmarkDecodeSingle/type=XML_struct_size=big-10          	      10	     45050 ns/op	   10377 B/op	     280 allocs/op
+BenchmarkDecodeSingle/type=YAML_struct_size=huge-10        	      10	     57829 ns/op	   23200 B/op	     386 allocs/op
+BenchmarkDecodeSingle/type=GOB_struct_size=huge-10         	      10	   1645925 ns/op	 1274254 B/op	   22501 allocs/op
+BenchmarkDecodeSingle/type=JSON_struct_size=huge-10        	      10	  12986658 ns/op	 3220468 B/op	   37218 allocs/op
+BenchmarkDecodeSingle/type=XML_struct_size=huge-10         	      10	  69240829 ns/op	22169344 B/op	  564327 allocs/op
+BenchmarkDecodeSingle/type=YAML_struct_size=huge#01-10     	      10	  88956475 ns/op	37407429 B/op	  745485 allocs/op
+PASS
+ok  	github.com/RSheremeta/gob-serialization	2.324s

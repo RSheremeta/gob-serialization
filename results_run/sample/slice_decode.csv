@@ -1,0 +1,21 @@
+goos: darwin
+goarch: arm64
+pkg: github.com/RSheremeta/gob-serialization
+BenchmarkDecodeSlice/type=GOB_struct_size=tiny-10         	      10	     33279 ns/op	    7808 B/op	     203 allocs/op
+BenchmarkDecodeSlice/type=JSON_struct_size=tiny-10        	      10	     11512 ns/op	    1176 B/op	      19 allocs/op
+BenchmarkDecodeSlice/type=XML_struct_size=tiny-10         	      10	      5858 ns/op	    1489 B/op	      32 allocs/op
+BenchmarkDecodeSlice/type=YAML_struct_size=tiny-10        	      10	     59862 ns/op	   18280 B/op	     278 allocs/op
+BenchmarkDecodeSlice/type=GOB_struct_size=medium-10       	      10	     35888 ns/op	   12003 B/op	     300 allocs/op
+BenchmarkDecodeSlice/type=JSON_struct_size=medium-10      	      10	     72138 ns/op	    9120 B/op	     100 allocs/op
+BenchmarkDecodeSlice/type=XML_struct_size=medium-10       	      10	     15588 ns/op	    2872 B/op	      66 allocs/op
+BenchmarkDecodeSlice/type=YAML_struct_size=medium-10      	      10	    358246 ns/op	   95138 B/op	    1791 allocs/op
+BenchmarkDecodeSlice/type=GOB_struct_size=big-10          	      10	    134333 ns/op	   58452 B/op	    1128 allocs/op
+BenchmarkDecodeSlice/type=JSON_struct_size=big-10         	      10	    745246 ns/op	  141289 B/op	    1379 allocs/op
+BenchmarkDecodeSlice/type=XML_struct_size=big-10          	      10	     29667 ns/op	    6200 B/op	     152 allocs/op
+BenchmarkDecodeSlice/type=YAML_struct_size=big-10         	      10	   3550271 ns/op	 1381953 B/op	   27397 allocs/op
+BenchmarkDecodeSlice/type=GOB_struct_size=huge-10         	      10	  67565967 ns/op	63096762 B/op	 1107478 allocs/op
+BenchmarkDecodeSlice/type=JSON_struct_size=huge-10        	      10	 647938300 ns/op	161048134 B/op	 1860430 allocs/op
+BenchmarkDecodeSlice/type=XML_struct_size=huge-10         	      10	      3062 ns/op	     920 B/op	      15 allocs/op
+BenchmarkDecodeSlice/type=YAML_struct_size=huge-10        	      10	4293059712 ns/op	1870001992 B/op	37274205 allocs/op
+PASS
+ok  	github.com/RSheremeta/gob-serialization	67.928s

@@ -1,0 +1,21 @@
+goos: darwin
+goarch: arm64
+pkg: github.com/RSheremeta/gob-serialization
+BenchmarkDecodePtrSlice/type=GOB_struct_size=tiny-10         	      10	     15592 ns/op	    7726 B/op	     207 allocs/op
+BenchmarkDecodePtrSlice/type=JSON_struct_size=tiny-10        	      10	      3371 ns/op	     544 B/op	      20 allocs/op
+BenchmarkDecodePtrSlice/type=XML_struct_size=tiny-10         	      10	      4412 ns/op	    1537 B/op	      36 allocs/op
+BenchmarkDecodePtrSlice/type=YAML_struct_size=tiny-10        	      10	     27942 ns/op	   12593 B/op	     177 allocs/op
+BenchmarkDecodePtrSlice/type=GOB_struct_size=medium-10       	      10	     33562 ns/op	   11196 B/op	     308 allocs/op
+BenchmarkDecodePtrSlice/type=JSON_struct_size=medium-10      	      10	     36021 ns/op	    2608 B/op	      96 allocs/op
+BenchmarkDecodePtrSlice/type=XML_struct_size=medium-10       	      10	     18892 ns/op	    3664 B/op	      95 allocs/op
+BenchmarkDecodePtrSlice/type=YAML_struct_size=medium-10      	      10	    167104 ns/op	   52532 B/op	    1030 allocs/op
+BenchmarkDecodePtrSlice/type=GOB_struct_size=big-10          	      10	    105692 ns/op	   46240 B/op	    1175 allocs/op
+BenchmarkDecodePtrSlice/type=JSON_struct_size=big-10         	      10	    453275 ns/op	   37929 B/op	    1225 allocs/op
+BenchmarkDecodePtrSlice/type=XML_struct_size=big-10          	      10	     50100 ns/op	   10432 B/op	     283 allocs/op
+BenchmarkDecodePtrSlice/type=YAML_struct_size=big-10         	      10	   2368138 ns/op	  847228 B/op	   17894 allocs/op
+BenchmarkDecodePtrSlice/type=GOB_struct_size=huge-10         	      10	  20374183 ns/op	13967332 B/op	     797 allocs/op
+BenchmarkDecodePtrSlice/type=JSON_struct_size=huge-10        	      10	 397613917 ns/op	   14000 B/op	      72 allocs/op
+BenchmarkDecodePtrSlice/type=XML_struct_size=huge-10         	      10	  39472529 ns/op	14960099 B/op	  422220 allocs/op
+BenchmarkDecodePtrSlice/type=YAML_struct_size=huge-10        	      10	3618463025 ns/op	1681999156 B/op	29697657 allocs/op
+PASS
+ok  	github.com/RSheremeta/gob-serialization	57.821s

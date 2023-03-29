@@ -1,0 +1,21 @@
+goos: darwin
+goarch: arm64
+pkg: github.com/RSheremeta/gob-serialization
+BenchmarkEncodeSlice/type=GOB_struct_size=tiny-10         	      10	      7862 ns/op	    1392 B/op	      22 allocs/op
+BenchmarkEncodeSlice/type=JSON_struct_size=tiny-10        	      10	      3721 ns/op	     562 B/op	       1 allocs/op
+BenchmarkEncodeSlice/type=XML_struct_size=tiny-10         	      10	     10217 ns/op	    5072 B/op	       9 allocs/op
+BenchmarkEncodeSlice/type=YAML_struct_size=tiny-10        	      10	     23217 ns/op	   37584 B/op	     129 allocs/op
+BenchmarkEncodeSlice/type=GOB_struct_size=medium-10       	      10	      9962 ns/op	    4600 B/op	      62 allocs/op
+BenchmarkEncodeSlice/type=JSON_struct_size=medium-10      	      10	     14142 ns/op	    4674 B/op	      21 allocs/op
+BenchmarkEncodeSlice/type=XML_struct_size=medium-10       	      10	     56579 ns/op	   18710 B/op	      72 allocs/op
+BenchmarkEncodeSlice/type=YAML_struct_size=medium-10      	      10	    142608 ns/op	  340952 B/op	     877 allocs/op
+BenchmarkEncodeSlice/type=GOB_struct_size=big-10          	      10	     67688 ns/op	   69401 B/op	     571 allocs/op
+BenchmarkEncodeSlice/type=JSON_struct_size=big-10         	      10	    195138 ns/op	   79204 B/op	     451 allocs/op
+BenchmarkEncodeSlice/type=XML_struct_size=big-10          	      10	    883075 ns/op	  298070 B/op	    1116 allocs/op
+BenchmarkEncodeSlice/type=YAML_struct_size=big-10         	      10	   2440958 ns/op	 6520168 B/op	   13745 allocs/op
+BenchmarkEncodeSlice/type=GOB_struct_size=huge-10         	      10	  75574500 ns/op	109713207 B/op	  690111 allocs/op
+BenchmarkEncodeSlice/type=JSON_struct_size=huge-10        	      10	 267247896 ns/op	127877377 B/op	  611006 allocs/op
+BenchmarkEncodeSlice/type=XML_struct_size=huge-10         	      10	1184146242 ns/op	316476485 B/op	 1498028 allocs/op
+BenchmarkEncodeSlice/type=YAML_struct_size=huge-10        	      10	4233214871 ns/op	12425343834 B/op	18662808 allocs/op
+PASS
+ok  	github.com/RSheremeta/gob-serialization	64.692s
