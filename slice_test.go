@@ -1,6 +1,10 @@
 package main
 
-import "testing"
+import (
+	"testing"
+
+	. "github.com/RSheremeta/gob-serialization/structs"
+)
 
 func BenchmarkEncodeSlice(b *testing.B) {
 	bnchmkrs := []struct {
@@ -8,28 +12,26 @@ func BenchmarkEncodeSlice(b *testing.B) {
 		target any
 		encFn  func(any) []byte
 	}{
-		{name: "type=GOB struct_size=tiny", target: newTinySlc(), encFn: encodeGob},
-		{name: "type=JSON struct_size=tiny", target: newTinySlc(), encFn: encodeJSON},
-		{name: "type=XML struct_size=tiny", target: newTinySlc(), encFn: encodeXML},
-		{name: "type=YAML struct_size=tiny", target: newTinySlc(), encFn: encodeYAML},
-		{name: "type=GOB struct_size=medium", target: newMediumSlc(), encFn: encodeGob},
-		{name: "type=JSON struct_size=medium", target: newMediumSlc(), encFn: encodeJSON},
-		{name: "type=XML struct_size=medium", target: newMediumSlc(), encFn: encodeXML},
-		{name: "type=YAML struct_size=medium", target: newMediumSlc(), encFn: encodeYAML},
-		{name: "type=GOB struct_size=huge", target: newHugeSlc(), encFn: encodeGob},
-		{name: "type=JSON struct_size=huge", target: newHugeSlc(), encFn: encodeJSON},
-		{name: "type=XML struct_size=huge", target: newHugeSlc(), encFn: encodeXML},
-		{name: "type=YAML struct_size=huge", target: newHugeSlc(), encFn: encodeYAML},
-	}
+		{name: "type=GOB struct_size=tiny", target: NewTinySlc(), encFn: encodeGob},
+		{name: "type=JSON struct_size=tiny", target: NewTinySlc(), encFn: encodeJSON},
+		{name: "type=XML struct_size=tiny", target: NewTinySlc(), encFn: encodeXML},
+		{name: "type=YAML struct_size=tiny", target: NewTinySlc(), encFn: encodeYAML},
 
-	/*	for _, bm := range bnchmkrs {
-		b.Run(bm.name, func(b *testing.B) {
-			strct := bm.target
-			b.ResetTimer()
-			res := bm.encFn(strct)
-			_ = res
-		})
-	}*/
+		{name: "type=GOB struct_size=medium", target: NewMediumSlc(), encFn: encodeGob},
+		{name: "type=JSON struct_size=medium", target: NewMediumSlc(), encFn: encodeJSON},
+		{name: "type=XML struct_size=medium", target: NewMediumSlc(), encFn: encodeXML},
+		{name: "type=YAML struct_size=medium", target: NewMediumSlc(), encFn: encodeYAML},
+
+		{name: "type=GOB struct_size=big", target: NewBigSlc(), encFn: encodeGob},
+		{name: "type=JSON struct_size=big", target: NewBigSlc(), encFn: encodeJSON},
+		{name: "type=XML struct_size=big", target: NewBigSlc(), encFn: encodeXML},
+		{name: "type=YAML struct_size=big", target: NewBigSlc(), encFn: encodeYAML},
+
+		{name: "type=GOB struct_size=huge", target: NewHugeSlc(), encFn: encodeGob},
+		{name: "type=JSON struct_size=huge", target: NewHugeSlc(), encFn: encodeJSON},
+		{name: "type=XML struct_size=huge", target: NewHugeSlc(), encFn: encodeXML},
+		{name: "type=YAML struct_size=huge", target: NewHugeSlc(), encFn: encodeYAML},
+	}
 
 	for _, bm := range bnchmkrs {
 		b.Run(bm.name, func(b *testing.B) {
@@ -54,10 +56,10 @@ func BenchmarkDecodeSlice(b *testing.B) {
 
 	// Tiny
 	bnchmkrs := []benchmark{
-		{name: "type=GOB struct_size=tiny", target: newTinySlc(), encFn: encodeGob, decFn: decodeGob},
-		{name: "type=JSON struct_size=tiny", target: newTinySlc(), encFn: encodeJSON, decFn: decodeJSON},
-		{name: "type=XML struct_size=tiny", target: newTinySlc(), encFn: encodeXML, decFn: decodeXML},
-		{name: "type=YAML struct_size=tiny", target: newTinySlc(), encFn: encodeYAML, decFn: decodeYAML},
+		{name: "type=GOB struct_size=tiny", target: NewTinySlc(), encFn: encodeGob, decFn: decodeGob},
+		{name: "type=JSON struct_size=tiny", target: NewTinySlc(), encFn: encodeJSON, decFn: decodeJSON},
+		{name: "type=XML struct_size=tiny", target: NewTinySlc(), encFn: encodeXML, decFn: decodeXML},
+		{name: "type=YAML struct_size=tiny", target: NewTinySlc(), encFn: encodeYAML, decFn: decodeYAML},
 	}
 
 	for _, bm := range bnchmkrs {
@@ -74,10 +76,10 @@ func BenchmarkDecodeSlice(b *testing.B) {
 
 	// Medium
 	bnchmkrs = []benchmark{
-		{name: "type=GOB struct_size=medium", target: newMediumSlc(), encFn: encodeGob, decFn: decodeGob},
-		{name: "type=JSON struct_size=medium", target: newMediumSlc(), encFn: encodeJSON, decFn: decodeJSON},
-		{name: "type=XML struct_size=medium", target: newMediumSlc(), encFn: encodeXML, decFn: decodeXML},
-		{name: "type=YAML struct_size=medium", target: newMediumSlc(), encFn: encodeYAML, decFn: decodeYAML},
+		{name: "type=GOB struct_size=medium", target: NewMediumSlc(), encFn: encodeGob, decFn: decodeGob},
+		{name: "type=JSON struct_size=medium", target: NewMediumSlc(), encFn: encodeJSON, decFn: decodeJSON},
+		{name: "type=XML struct_size=medium", target: NewMediumSlc(), encFn: encodeXML, decFn: decodeXML},
+		{name: "type=YAML struct_size=medium", target: NewMediumSlc(), encFn: encodeYAML, decFn: decodeYAML},
 	}
 
 	for _, bm := range bnchmkrs {
@@ -92,12 +94,32 @@ func BenchmarkDecodeSlice(b *testing.B) {
 		})
 	}
 
+	// Big
+	bnchmkrs = []benchmark{
+		{name: "type=GOB struct_size=big", target: NewBigSlc(), encFn: encodeGob, decFn: decodeGob},
+		{name: "type=JSON struct_size=big", target: NewBigSlc(), encFn: encodeJSON, decFn: decodeJSON},
+		{name: "type=XML struct_size=big", target: NewBigSlc(), encFn: encodeXML, decFn: decodeXML},
+		{name: "type=YAML struct_size=big", target: NewBigSlc(), encFn: encodeYAML, decFn: decodeYAML},
+	}
+
+	for _, bm := range bnchmkrs {
+		b.Run(bm.name, func(b *testing.B) {
+			strct := bm.target
+			bytes := bm.encFn(strct)
+			b.ResetTimer()
+			for i := 0; i < b.N; i++ {
+				var result []Big
+				bm.decFn(bytes, &result)
+			}
+		})
+	}
+
 	// Huge
 	bnchmkrs = []benchmark{
-		{name: "type=GOB struct_size=huge", target: newHugeSlc(), encFn: encodeGob, decFn: decodeGob},
-		{name: "type=JSON struct_size=huge", target: newHugeSlc(), encFn: encodeJSON, decFn: decodeJSON},
-		{name: "type=XML struct_size=huge", target: newHugeSlc(), encFn: encodeXML, decFn: decodeXML},
-		{name: "type=YAML struct_size=huge", target: newHugeSlc(), encFn: encodeYAML, decFn: decodeYAML},
+		{name: "type=GOB struct_size=huge", target: NewHugeSlc(), encFn: encodeGob, decFn: decodeGob},
+		{name: "type=JSON struct_size=huge", target: NewHugeSlc(), encFn: encodeJSON, decFn: decodeJSON},
+		{name: "type=XML struct_size=huge", target: NewHugeSlc(), encFn: encodeXML, decFn: decodeXML},
+		{name: "type=YAML struct_size=huge", target: NewHugeSlc(), encFn: encodeYAML, decFn: decodeYAML},
 	}
 
 	for _, bm := range bnchmkrs {

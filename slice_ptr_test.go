@@ -1,35 +1,37 @@
 package main
 
-import "testing"
+import (
+	"testing"
 
-func BenchmarkEncodeSlicePtr(b *testing.B) {
+	. "github.com/RSheremeta/gob-serialization/structs"
+)
+
+func BenchmarkEncodePtrSlice(b *testing.B) {
 	bnchmkrs := []struct {
 		name   string
 		target any
 		encFn  func(any) []byte
 	}{
-		{name: "type=GOB struct_size=tiny", target: newTinyPtrsSlc(), encFn: encodeGob},
-		{name: "type=JSON struct_size=tiny", target: newTinyPtrsSlc(), encFn: encodeJSON},
-		{name: "type=XML struct_size=tiny", target: newTinyPtrsSlc(), encFn: encodeXML},
-		{name: "type=YAML struct_size=tiny", target: newTinyPtrsSlc(), encFn: encodeYAML},
-		{name: "type=GOB struct_size=medium", target: newMediumPtrsSlc(), encFn: encodeGob},
-		{name: "type=JSON struct_size=medium", target: newMediumPtrsSlc(), encFn: encodeJSON},
-		{name: "type=XML struct_size=medium", target: newMediumPtrsSlc(), encFn: encodeXML},
-		{name: "type=YAML struct_size=medium", target: newMediumPtrsSlc(), encFn: encodeYAML},
-		{name: "type=GOB struct_size=huge", target: newHugePtrsSlc(), encFn: encodeGob},
-		{name: "type=JSON struct_size=huge", target: newHugePtrsSlc(), encFn: encodeJSON},
-		{name: "type=XML struct_size=huge", target: newHugePtrsSlc(), encFn: encodeXML},
-		{name: "type=YAML struct_size=huge", target: newHugePtrsSlc(), encFn: encodeYAML},
-	}
+		{name: "type=GOB struct_size=tiny", target: NewTinyPtrsSlc(), encFn: encodeGob},
+		{name: "type=JSON struct_size=tiny", target: NewTinyPtrsSlc(), encFn: encodeJSON},
+		{name: "type=XML struct_size=tiny", target: NewTinyPtrsSlc(), encFn: encodeXML},
+		{name: "type=YAML struct_size=tiny", target: NewTinyPtrsSlc(), encFn: encodeYAML},
 
-	/*	for _, bm := range bnchmkrs {
-		b.Run(bm.name, func(b *testing.B) {
-			strct := bm.target
-			b.ResetTimer()
-			res := bm.encFn(strct)
-			_ = res
-		})
-	}*/
+		{name: "type=GOB struct_size=medium", target: NewMediumPtrsSlc(), encFn: encodeGob},
+		{name: "type=JSON struct_size=medium", target: NewMediumPtrsSlc(), encFn: encodeJSON},
+		{name: "type=XML struct_size=medium", target: NewMediumPtrsSlc(), encFn: encodeXML},
+		{name: "type=YAML struct_size=medium", target: NewMediumPtrsSlc(), encFn: encodeYAML},
+
+		{name: "type=GOB struct_size=big", target: NewBigPtrsSlc(), encFn: encodeGob},
+		{name: "type=JSON struct_size=big", target: NewBigPtrsSlc(), encFn: encodeJSON},
+		{name: "type=XML struct_size=big", target: NewBigPtrsSlc(), encFn: encodeXML},
+		{name: "type=YAML struct_size=big", target: NewBigPtrsSlc(), encFn: encodeYAML},
+
+		{name: "type=GOB struct_size=huge", target: NewHugePtrsSlc(), encFn: encodeGob},
+		{name: "type=JSON struct_size=huge", target: NewHugePtrsSlc(), encFn: encodeJSON},
+		{name: "type=XML struct_size=huge", target: NewHugePtrsSlc(), encFn: encodeXML},
+		{name: "type=YAML struct_size=huge", target: NewHugePtrsSlc(), encFn: encodeYAML},
+	}
 
 	for _, bm := range bnchmkrs {
 		b.Run(bm.name, func(b *testing.B) {
@@ -44,7 +46,7 @@ func BenchmarkEncodeSlicePtr(b *testing.B) {
 	}
 }
 
-func BenchmarkDecodeSlicePtr(b *testing.B) {
+func BenchmarkDecodePtrSlice(b *testing.B) {
 	type benchmark struct {
 		name   string
 		target any
@@ -54,10 +56,10 @@ func BenchmarkDecodeSlicePtr(b *testing.B) {
 
 	// Tiny
 	bnchmkrs := []benchmark{
-		{name: "type=GOB struct_size=tiny", target: newTinyPtrsSlc(), encFn: encodeGob, decFn: decodeGob},
-		{name: "type=JSON struct_size=tiny", target: newTinyPtrsSlc(), encFn: encodeJSON, decFn: decodeJSON},
-		{name: "type=XML struct_size=tiny", target: newTinyPtrsSlc(), encFn: encodeXML, decFn: decodeXML},
-		{name: "type=YAML struct_size=tiny", target: newTinyPtrsSlc(), encFn: encodeYAML, decFn: decodeYAML},
+		{name: "type=GOB struct_size=tiny", target: NewTinyPtrsSlc(), encFn: encodeGob, decFn: decodeGob},
+		{name: "type=JSON struct_size=tiny", target: NewTinyPtrsSlc(), encFn: encodeJSON, decFn: decodeJSON},
+		{name: "type=XML struct_size=tiny", target: NewTinyPtrsSlc(), encFn: encodeXML, decFn: decodeXML},
+		{name: "type=YAML struct_size=tiny", target: NewTinyPtrsSlc(), encFn: encodeYAML, decFn: decodeYAML},
 	}
 
 	for _, bm := range bnchmkrs {
@@ -74,10 +76,10 @@ func BenchmarkDecodeSlicePtr(b *testing.B) {
 
 	// Medium
 	bnchmkrs = []benchmark{
-		{name: "type=GOB struct_size=medium", target: newMediumPtrsSlc(), encFn: encodeGob, decFn: decodeGob},
-		{name: "type=JSON struct_size=medium", target: newMediumPtrsSlc(), encFn: encodeJSON, decFn: decodeJSON},
-		{name: "type=XML struct_size=medium", target: newMediumPtrsSlc(), encFn: encodeXML, decFn: decodeXML},
-		{name: "type=YAML struct_size=medium", target: newMediumPtrsSlc(), encFn: encodeYAML, decFn: decodeYAML},
+		{name: "type=GOB struct_size=medium", target: NewMediumPtrsSlc(), encFn: encodeGob, decFn: decodeGob},
+		{name: "type=JSON struct_size=medium", target: NewMediumPtrsSlc(), encFn: encodeJSON, decFn: decodeJSON},
+		{name: "type=XML struct_size=medium", target: NewMediumPtrsSlc(), encFn: encodeXML, decFn: decodeXML},
+		{name: "type=YAML struct_size=medium", target: NewMediumPtrsSlc(), encFn: encodeYAML, decFn: decodeYAML},
 	}
 
 	for _, bm := range bnchmkrs {
@@ -92,12 +94,12 @@ func BenchmarkDecodeSlicePtr(b *testing.B) {
 		})
 	}
 
-	// Huge
+	// Big
 	bnchmkrs = []benchmark{
-		{name: "type=GOB struct_size=huge", target: newHugePtrsSlc(), encFn: encodeGob, decFn: decodeGob},
-		{name: "type=JSON struct_size=huge", target: newHugePtrsSlc(), encFn: encodeJSON, decFn: decodeJSON},
-		{name: "type=XML struct_size=huge", target: newHugePtrsSlc(), encFn: encodeXML, decFn: decodeXML},
-		{name: "type=YAML struct_size=huge", target: newHugePtrsSlc(), encFn: encodeYAML, decFn: decodeYAML},
+		{name: "type=GOB struct_size=big", target: NewBigPtrsSlc(), encFn: encodeGob, decFn: decodeGob},
+		{name: "type=JSON struct_size=big", target: NewBigPtrsSlc(), encFn: encodeJSON, decFn: decodeJSON},
+		{name: "type=XML struct_size=big", target: NewBigPtrsSlc(), encFn: encodeXML, decFn: decodeXML},
+		{name: "type=YAML struct_size=big", target: NewBigPtrsSlc(), encFn: encodeYAML, decFn: decodeYAML},
 	}
 
 	for _, bm := range bnchmkrs {
@@ -106,7 +108,27 @@ func BenchmarkDecodeSlicePtr(b *testing.B) {
 			bytes := bm.encFn(strct)
 			b.ResetTimer()
 			for i := 0; i < b.N; i++ {
-				var result []*Huge
+				var result []*Big
+				bm.decFn(bytes, &result)
+			}
+		})
+	}
+
+	// Huge
+	bnchmkrs = []benchmark{
+		{name: "type=GOB struct_size=huge", target: NewHugePtrsSlc(), encFn: encodeGob, decFn: decodeGob},
+		{name: "type=JSON struct_size=huge", target: NewHugePtrsSlc(), encFn: encodeJSON, decFn: decodeJSON},
+		{name: "type=XML struct_size=huge", target: NewHugePtrsSlc(), encFn: encodeXML, decFn: decodeXML},
+		{name: "type=YAML struct_size=huge", target: NewHugePtrsSlc(), encFn: encodeYAML, decFn: decodeYAML},
+	}
+
+	for _, bm := range bnchmkrs {
+		b.Run(bm.name, func(b *testing.B) {
+			strct := bm.target
+			bytes := bm.encFn(strct)
+			b.ResetTimer()
+			for i := 0; i < b.N; i++ {
+				var result []*Big
 				bm.decFn(bytes, &result)
 			}
 		})

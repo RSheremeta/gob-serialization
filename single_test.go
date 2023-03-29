@@ -1,6 +1,10 @@
 package main
 
-import "testing"
+import (
+	"testing"
+
+	. "github.com/RSheremeta/gob-serialization/structs"
+)
 
 func BenchmarkEncodeSingle(b *testing.B) {
 	bnchmkrs := []struct {
@@ -8,28 +12,26 @@ func BenchmarkEncodeSingle(b *testing.B) {
 		target any
 		encFn  func(any) []byte
 	}{
-		{name: "type=GOB struct_size=tiny", target: newTiny(), encFn: encodeGob},
-		{name: "type=JSON struct_size=tiny", target: newTiny(), encFn: encodeJSON},
-		{name: "type=XML struct_size=tiny", target: newTiny(), encFn: encodeXML},
-		{name: "type=YAML struct_size=tiny", target: newTiny(), encFn: encodeYAML},
-		{name: "type=GOB struct_size=medium", target: newMedium(), encFn: encodeGob},
-		{name: "type=JSON struct_size=medium", target: newMedium(), encFn: encodeJSON},
-		{name: "type=XML struct_size=medium", target: newMedium(), encFn: encodeXML},
-		{name: "type=YAML struct_size=medium", target: newMedium(), encFn: encodeYAML},
-		{name: "type=GOB struct_size=huge", target: newHuge(), encFn: encodeGob},
-		{name: "type=JSON struct_size=huge", target: newHuge(), encFn: encodeJSON},
-		{name: "type=XML struct_size=huge", target: newHuge(), encFn: encodeXML},
-		{name: "type=YAML struct_size=huge", target: newHuge(), encFn: encodeYAML},
-	}
+		{name: "type=GOB struct_size=tiny", target: NewTiny(), encFn: encodeGob},
+		{name: "type=JSON struct_size=tiny", target: NewTiny(), encFn: encodeJSON},
+		{name: "type=XML struct_size=tiny", target: NewTiny(), encFn: encodeXML},
+		{name: "type=YAML struct_size=tiny", target: NewTiny(), encFn: encodeYAML},
 
-	/*	for _, bm := range bnchmkrs {
-		b.Run(bm.name, func(b *testing.B) {
-			strct := bm.target
-			b.ResetTimer()
-			res := bm.encFn(strct)
-			_ = res
-		})
-	}*/
+		{name: "type=GOB struct_size=medium", target: NewMedium(), encFn: encodeGob},
+		{name: "type=JSON struct_size=medium", target: NewMedium(), encFn: encodeJSON},
+		{name: "type=XML struct_size=medium", target: NewMedium(), encFn: encodeXML},
+		{name: "type=YAML struct_size=medium", target: NewMedium(), encFn: encodeYAML},
+
+		{name: "type=GOB struct_size=big", target: NewBig(), encFn: encodeGob},
+		{name: "type=JSON struct_size=big", target: NewBig(), encFn: encodeJSON},
+		{name: "type=XML struct_size=big", target: NewBig(), encFn: encodeXML},
+		{name: "type=YAML struct_size=big", target: NewBig(), encFn: encodeYAML},
+
+		{name: "type=GOB struct_size=huge", target: NewHuge(), encFn: encodeGob},
+		{name: "type=JSON struct_size=huge", target: NewHuge(), encFn: encodeJSON},
+		{name: "type=XML struct_size=huge", target: NewHuge(), encFn: encodeXML},
+		{name: "type=YAML struct_size=huge", target: NewHuge(), encFn: encodeYAML},
+	}
 
 	for _, bm := range bnchmkrs {
 		b.Run(bm.name, func(b *testing.B) {
@@ -54,10 +56,10 @@ func BenchmarkDecodeSingle(b *testing.B) {
 
 	// Tiny
 	bnchmkrs := []benchmark{
-		{name: "type=GOB struct_size=tiny", target: newTiny(), encFn: encodeGob, decFn: decodeGob},
-		{name: "type=JSON struct_size=tiny", target: newTiny(), encFn: encodeJSON, decFn: decodeJSON},
-		{name: "type=XML struct_size=tiny", target: newTiny(), encFn: encodeXML, decFn: decodeXML},
-		{name: "type=YAML struct_size=tiny", target: newTiny(), encFn: encodeYAML, decFn: decodeYAML},
+		{name: "type=GOB struct_size=tiny", target: NewTiny(), encFn: encodeGob, decFn: decodeGob},
+		{name: "type=JSON struct_size=tiny", target: NewTiny(), encFn: encodeJSON, decFn: decodeJSON},
+		{name: "type=XML struct_size=tiny", target: NewTiny(), encFn: encodeXML, decFn: decodeXML},
+		{name: "type=YAML struct_size=tiny", target: NewTiny(), encFn: encodeYAML, decFn: decodeYAML},
 	}
 
 	for _, bm := range bnchmkrs {
@@ -74,10 +76,10 @@ func BenchmarkDecodeSingle(b *testing.B) {
 
 	// Medium
 	bnchmkrs = []benchmark{
-		{name: "type=GOB struct_size=medium", target: newMedium(), encFn: encodeGob, decFn: decodeGob},
-		{name: "type=JSON struct_size=medium", target: newMedium(), encFn: encodeJSON, decFn: decodeJSON},
-		{name: "type=XML struct_size=medium", target: newMedium(), encFn: encodeXML, decFn: decodeXML},
-		{name: "type=YAML struct_size=medium", target: newMedium(), encFn: encodeYAML, decFn: decodeYAML},
+		{name: "type=GOB struct_size=medium", target: NewMedium(), encFn: encodeGob, decFn: decodeGob},
+		{name: "type=JSON struct_size=medium", target: NewMedium(), encFn: encodeJSON, decFn: decodeJSON},
+		{name: "type=XML struct_size=medium", target: NewMedium(), encFn: encodeXML, decFn: decodeXML},
+		{name: "type=YAML struct_size=medium", target: NewMedium(), encFn: encodeYAML, decFn: decodeYAML},
 	}
 
 	for _, bm := range bnchmkrs {
@@ -94,10 +96,30 @@ func BenchmarkDecodeSingle(b *testing.B) {
 
 	// Huge
 	bnchmkrs = []benchmark{
-		{name: "type=GOB struct_size=huge", target: newHuge(), encFn: encodeGob, decFn: decodeGob},
-		{name: "type=JSON struct_size=huge", target: newHuge(), encFn: encodeJSON, decFn: decodeJSON},
-		{name: "type=XML struct_size=huge", target: newHuge(), encFn: encodeXML, decFn: decodeXML},
-		{name: "type=YAML struct_size=huge", target: newHuge(), encFn: encodeYAML, decFn: decodeYAML},
+		{name: "type=GOB struct_size=big", target: NewBig(), encFn: encodeGob, decFn: decodeGob},
+		{name: "type=JSON struct_size=big", target: NewBig(), encFn: encodeJSON, decFn: decodeJSON},
+		{name: "type=XML struct_size=big", target: NewBig(), encFn: encodeXML, decFn: decodeXML},
+		{name: "type=YAML struct_size=huge", target: NewBig(), encFn: encodeYAML, decFn: decodeYAML},
+	}
+
+	for _, bm := range bnchmkrs {
+		b.Run(bm.name, func(b *testing.B) {
+			strct := bm.target
+			bytes := bm.encFn(strct)
+			b.ResetTimer()
+			for i := 0; i < b.N; i++ {
+				var result Big
+				bm.decFn(bytes, &result)
+			}
+		})
+	}
+
+	// Huge
+	bnchmkrs = []benchmark{
+		{name: "type=GOB struct_size=huge", target: NewHuge(), encFn: encodeGob, decFn: decodeGob},
+		{name: "type=JSON struct_size=huge", target: NewHuge(), encFn: encodeJSON, decFn: decodeJSON},
+		{name: "type=XML struct_size=huge", target: NewHuge(), encFn: encodeXML, decFn: decodeXML},
+		{name: "type=YAML struct_size=huge", target: NewHuge(), encFn: encodeYAML, decFn: decodeYAML},
 	}
 
 	for _, bm := range bnchmkrs {
