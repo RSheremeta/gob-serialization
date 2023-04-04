@@ -30,6 +30,8 @@ The experiment is run on:
 - Apple M1 Pro CPU
 - Go 1.19.5
 
+Here is the full analysis of mine about all the results run: [Analysis.md](https://github.com/RSheremeta/gob-serialization/blob/master/Analysis.md)
+
 [**map_ptr_slice_decode.csv:**](https://github.com/RSheremeta/gob-serialization/blob/master/results_run/sample/map_ptr_slice_decode.csv)
 
 ```bash
